@@ -184,7 +184,10 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 
 .rows{border-top:2px solid var(--navy)}
 .rows > div{
-  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  /* align-items:center，不是 baseline —— 金額只有一行，標籤+說明是兩行，
+     用 baseline 會讓金額貼齊標籤那行的基線，看起來偏上；center 才會對齊
+     整列（含說明）的垂直中心。 */
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
   padding:7px 0;border-bottom:1px solid var(--rule)
 }
 .rows .k{font-size:16px;font-weight:700;line-height:1.3}
