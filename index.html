@@ -155,8 +155,15 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 
 /* ── 費用：大數字 + 規線條列，不用方框表格 ──
    #cost 這區使用者要求「手機一個畫面看到全部」，故標頭／總額／
-   明細列都用 #cost 專屬選擇器收緊，不影響其他區塊共用的 h2/.dek/.note。 */
-#cost{padding-top:24px;padding-bottom:30px}
+   明細列都用 #cost 專屬選擇器收緊，不影響其他區塊共用的 h2/.dek/.note。
+   .cost-hero 用 flex 置中：從快速跳轉點進來時，價格會落在畫面正中央，
+   不會貼在頂端。min-height 扣掉底部固定 CTA 列（實測 76px）+ 安全邊距。 */
+#cost{padding-top:16px;padding-bottom:30px}
+.cost-hero{
+  min-height:calc(100vh - 92px);   /* 不支援 svh 的舊瀏覽器備援 */
+  min-height:calc(100svh - 92px);  /* 動態視窗高度，排除瀏覽器網址列 */
+  display:flex;flex-direction:column;justify-content:center
+}
 #cost .sec-no{margin-bottom:4px}
 #cost h2{font-size:26px;margin-bottom:6px}
 #cost .dek{font-size:15px;margin-bottom:14px;line-height:1.4}
@@ -466,17 +473,18 @@ html.js-reveal .reveal.in{
 
 <!-- ═══ 費用 ═══ -->
 <section class="band" id="cost">
-  <span class="sec-no">費用</span>
-  <h2>一個月要多少錢</h2>
-  <p class="dek">2026 年最新數字，規費與服務費全都列出來。</p>
+  <div class="cost-hero">
+    <span class="sec-no">費用</span>
+    <h2>一個月要多少錢</h2>
+    <p class="dek">2026 年最新數字，規費與服務費全都列出來。</p>
 
-  <div class="total">
-    <span class="cap">每月固定支出</span>
-    <span class="num">27,000<small> 元</small></span>
-    <span class="band-note">實際 25,284 ～ 27,952 元，抓 27,000 最保險</span>
-  </div>
+    <div class="total">
+      <span class="cap">每月固定支出</span>
+      <span class="num">27,000<small> 元</small></span>
+      <span class="band-note">實際 25,284 ～ 27,952 元，抓 27,000 最保險</span>
+    </div>
 
-  <div class="rows">
+    <div class="rows">
     <div>
       <span class="k">基本月薪<i>2026 年公告月薪</i></span>
       <span class="v">20,000</span>
@@ -501,9 +509,10 @@ html.js-reveal .reveal.in{
       <span class="k">仲介服務費<i>依年資遞減</i></span>
       <span class="v">1,800</span>
     </div>
-    <div class="sum">
-      <span class="k">每月合計</span>
-      <span class="v">25,284～27,952</span>
+      <div class="sum">
+        <span class="k">每月合計</span>
+        <span class="v">25,284～27,952</span>
+      </div>
     </div>
   </div>
 
