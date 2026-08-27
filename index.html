@@ -201,9 +201,11 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 .rows .sum .k{font-size:17px;font-weight:700;color:var(--navy)}
 .rows .sum .v{font-size:19px;color:var(--navy)}
 
-.aside{
-  margin-top:12px;padding:12px 0 0;border-top:1px dashed var(--rule)
-}
+.aside{margin-top:12px}
+/* 虛線只留在「兩個 .aside 相鄰」之間，當雇主/移工兩類的分隔線；
+   第一個 .aside 緊接在 .rows 的合計列（已有 3px 實線）之後，
+   再加一條虛線是多餘的，故不放在基本 .aside 規則裡。 */
+.aside + .aside{padding-top:12px;border-top:1px dashed var(--rule)}
 .aside h3{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:9px}
 .aside ul{margin:0;padding-left:22px;font-size:19px;color:var(--ink-2)}
 .aside li{margin-bottom:5px}
