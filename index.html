@@ -156,14 +156,11 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 /* ── 費用：大數字 + 規線條列，不用方框表格 ──
    #cost 這區使用者要求「手機一個畫面看到全部」，故標頭／總額／
    明細列都用 #cost 專屬選擇器收緊，不影響其他區塊共用的 h2/.dek/.note。
-   .cost-hero 用 flex 置中：從快速跳轉點進來時，價格會落在畫面正中央，
-   不會貼在頂端。min-height 扣掉底部固定 CTA 列（實測 76px）+ 安全邊距。 */
+   .cost-hero 上下用固定留白置中，不用 vh/svh 撐 min-height ——
+   實測 vh 會隨手機瀏覽器網址列顯示/隱藏動態改變，捲動時整塊內容
+   跟著位移；改用固定 padding，數值恆定，保證不會再移動。 */
 #cost{padding-top:16px;padding-bottom:30px}
-.cost-hero{
-  min-height:calc(100vh - 92px);   /* 不支援 svh 的舊瀏覽器備援 */
-  min-height:calc(100svh - 92px);  /* 動態視窗高度，排除瀏覽器網址列 */
-  display:flex;flex-direction:column;justify-content:center
-}
+.cost-hero{padding:40px 0}
 #cost .sec-no{margin-bottom:4px}
 #cost h2{font-size:26px;margin-bottom:6px}
 #cost .dek{font-size:15px;margin-bottom:14px;line-height:1.4}
