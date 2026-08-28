@@ -228,10 +228,13 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 .routes h3 .rn{font-size:20px;color:var(--gold);flex:none;font-weight:900}
 .routes ul{margin:0;padding-left:0;list-style:none}
 .routes li{
-  font-size:19px;color:var(--ink-2);padding:7px 0 7px 16px;
-  border-left:3px solid var(--rule);margin-bottom:3px;line-height:1.5
+  font-size:17px;color:var(--ink-2);padding:6px 0 6px 16px;
+  border-left:3px solid var(--rule);margin-bottom:3px;line-height:1.45
 }
-.routes li b{color:var(--ink);font-weight:700;display:block}
+/* 標籤跟說明同行，短項目一行就放得下，不再強制拆兩行；
+   加冒號並用粗體+主色跟後面說明文字（次色）拉出區隔 */
+.routes li b{color:var(--ink);font-weight:700}
+.routes li b::after{content:"："}
 
 /* ── 五大保證：深底，序號序列 ── */
 .vows{border-top:2px solid var(--navy)}
@@ -577,14 +580,13 @@ html.js-reveal .reveal.in{
     <div>
       <h3><span class="rn">2</span>免巴氏量表</h3>
       <ul>
-        <li><b>80 歲以上</b>憑身分證證明年齡即可申請</li>
-        <li><b>70–79 歲癌症二期以上</b>憑診斷證明書即可申請</li>
-        <li><b>不分年齡癌症四期以上</b>檢附一年內有效醫療證明</li>
-        <li><b>全癱或無法自行下床</b>檢附一年內有效醫療證明</li>
-        <li><b>長照服務滿 6 個月</b>含居家照顧、日間照顧或家庭托顧</li>
-        <li><b>輕度以上失智症</b>CDR 臨床失智評估量表達 1 分以上</li>
-        <li><b>特定身心障礙項目</b>持有符合規定的身心障礙證明</li>
-        <li><b>1 年內曾聘僱看護工</b>外籍看護或中階看護工，憑相關紀錄證明</li>
+        <li><b>80 歲以上</b>憑身分證即可申請</li>
+        <li><b>癌症患者</b>70–79 歲二期以上，或不分年齡四期以上，附醫療證明</li>
+        <li><b>全癱或臥床</b>檢附一年內有效醫療證明</li>
+        <li><b>長照滿 6 個月</b>含居家、日間或家庭托顧</li>
+        <li><b>輕度以上失智症</b>CDR 量表達 1 分以上</li>
+        <li><b>特定身心障礙項目</b>持相關證明即可</li>
+        <li><b>1 年內聘僱過看護工</b>外籍或中階皆可，憑紀錄</li>
       </ul>
     </div>
     <div>
