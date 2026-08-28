@@ -218,23 +218,25 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 .note a{color:var(--navy);text-decoration:underline}
 .note b{color:var(--ink)}
 
-/* ── 資格：三途徑，序號有意義 ── */
-.routes > div{padding:22px 0;border-bottom:1px solid var(--rule-cool)}
-.routes > div:first-child{border-top:2px solid var(--navy-ink)}
-.routes h3{
-  font-family:var(--serif);font-size:24px;font-weight:900;
-  color:var(--navy-ink);margin-bottom:10px;display:flex;gap:11px;align-items:baseline
+/* ── 資格：拆平成單一數字清單（使用者要求，捨棄三途徑分類，
+   換取「一眼掃完」的速度）。編號沿用 .vows 的圓形徽章語彙，
+   讓頁面上兩處數字列表視覺語言一致。 ── */
+.qual{border-top:2px solid var(--navy-ink);margin-bottom:4px}
+.qual li{
+  display:flex;align-items:center;gap:13px;
+  padding:10px 4px;border-bottom:1px solid var(--rule-cool)
 }
-.routes h3 .rn{font-size:20px;color:var(--gold);flex:none;font-weight:900}
-.routes ul{margin:0;padding-left:0;list-style:none}
-.routes li{
-  font-size:17px;color:var(--ink-2);padding:6px 0 6px 16px;
-  border-left:3px solid var(--rule);margin-bottom:3px;line-height:1.45
+.qual li:nth-child(even){background:rgba(255,255,255,.55)}
+.qual .no{
+  flex:none;width:30px;height:30px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:900;font-size:14.5px;line-height:1
 }
-/* 標籤跟說明同行，短項目一行就放得下，不再強制拆兩行；
-   加冒號並用粗體+主色跟後面說明文字（次色）拉出區隔 */
-.routes li b{color:var(--ink);font-weight:700}
-.routes li b::after{content:"："}
+.qual .t{font-size:17px;font-weight:700;color:var(--navy-ink);line-height:1.35}
+.qual .t small{
+  display:block;font-size:13.5px;font-weight:400;color:var(--ink-2);margin-top:2px
+}
 
 /* ── 五大保證：深底，序號序列 ── */
 .vows{border-top:2px solid var(--navy)}
@@ -567,46 +569,29 @@ html.js-reveal .reveal.in{
 <section class="band band--cool" id="who-can">
   <span class="sec-no">資格</span>
   <h2>我家能不能申請</h2>
-  <p class="dek">三種途徑，符合任一種就能提出申請。很多人以為要拿到巴氏量表才行，其實不一定。</p>
+  <p class="dek">符合以下任一項即可申請，不是只有巴氏量表這條路。</p>
 
-  <div class="routes">
-    <div>
-      <h3><span class="rn">1</span>巴氏量表</h3>
-      <ul>
-        <li><b>未滿 80 歲</b>全日照護需要，量表 35 分以下</li>
-        <li><b>80–85 歲</b>嚴重依賴或全日照護需要，60 分以下</li>
-        <li><b>85 歲以上</b>輕度依賴，量表任一項失能即可</li>
-      </ul>
-    </div>
-    <div>
-      <h3><span class="rn">2</span>免巴氏量表</h3>
-      <ul>
-        <li><b>80 歲以上</b>憑身分證即可申請</li>
-        <li><b>癌症患者</b>70–79 歲二期以上，或不分年齡四期以上，附醫療證明</li>
-        <li><b>全癱或臥床</b>檢附一年內有效醫療證明</li>
-        <li><b>長照滿 6 個月</b>含居家、日間或家庭托顧</li>
-        <li><b>輕度以上失智症</b>CDR 量表達 1 分以上</li>
-        <li><b>特定身心障礙項目</b>持相關證明即可</li>
-        <li><b>1 年內聘僱過看護工</b>外籍或中階皆可，憑紀錄</li>
-      </ul>
-    </div>
-    <div>
-      <h3><span class="rn">3</span>重聘免評估</h3>
-      <ul>
-        <li><b>共同前提</b>被看護者曾合法聘僱過外籍看護</li>
-        <li><b>75 歲以上</b>曾獲准聘僱看護，重聘時全面免評</li>
-        <li><b>特定身心障礙</b>證明屬免重新鑑定（無註記、永久有效）</li>
-        <li><b>特定重症</b>腦性麻痺、脊髓損傷、截肢等功能重損</li>
-        <li><b>核心失能</b>全癱臥床、24 小時用呼吸器，或植物人</li>
-        <li><b>1 年內曾聘僱</b>不分年齡，附 1 年內證明可直接申請</li>
-      </ul>
-    </div>
-  </div>
+  <ul class="qual">
+    <li><span class="no">1</span><span class="t">未滿 80 歲<small>巴氏量表 35 分以下</small></span></li>
+    <li><span class="no">2</span><span class="t">80–85 歲<small>巴氏量表 60 分以下</small></span></li>
+    <li><span class="no">3</span><span class="t">85 歲以上<small>免評估，憑身分證即可</small></span></li>
+    <li><span class="no">4</span><span class="t">70–79 歲癌症二期以上<small>憑診斷證明</small></span></li>
+    <li><span class="no">5</span><span class="t">不分年齡癌症四期以上<small>附一年內醫療證明</small></span></li>
+    <li><span class="no">6</span><span class="t">全癱或臥床<small>附一年內醫療證明</small></span></li>
+    <li><span class="no">7</span><span class="t">長照滿 6 個月<small>居家、日間或家庭托顧</small></span></li>
+    <li><span class="no">8</span><span class="t">輕度以上失智症<small>CDR 量表達 1 分以上</small></span></li>
+    <li><span class="no">9</span><span class="t">特定身心障礙項目<small>持相關證明即可</small></span></li>
+    <li><span class="no">10</span><span class="t">特定重症<small>腦性麻痺、脊髓損傷、截肢等</small></span></li>
+    <li><span class="no">11</span><span class="t">核心失能<small>呼吸器依賴或植物人</small></span></li>
+    <li><span class="no">12</span><span class="t">75 歲以上重聘<small>曾聘僱過看護，全面免評</small></span></li>
+    <li><span class="no">13</span><span class="t">1 年內曾聘僱<small>不限年齡，附證明可直接重聘</small></span></li>
+  </ul>
 
   <p class="note">
     申請條件以主管機關勞動部最新公告為準，多元認定細節可洽
-    衛生福利部或各地長期照顧管理中心。不確定自己符不符合？
-    <b>全程免費諮詢</b>，Lucky姐團隊 31 年經驗，一通電話幫你判斷。
+    <a href="https://1966.gov.tw/" target="_blank" rel="noopener">衛生福利部或各地長期照顧管理中心</a>。
+    延伸閱讀：<a href="https://ss1689.com/80%e6%ad%b2%e4%bb%a5%e4%b8%8a%e5%85%8d%e8%a9%95%e4%bc%b0%e5%a4%96%e7%b1%8d%e5%ae%b6%e5%ba%ad%e7%9c%8b%e8%ad%b7%e8%88%87%e5%b9%ab%e5%82%ad%e7%94%b3%e8%ab%8b%e5%85%a8%e6%94%bb%e7%95%a5/" target="_blank" rel="noopener">80歲以上免評估申請全攻略</a>、<a href="https://ss1689.com/%e5%a4%b1%e6%99%ba%e7%97%87%e7%85%a7%e8%ad%b7%e7%9a%84%e7%9c%9f%e5%af%a6%e5%9b%b0%e5%a2%83%e8%88%87%e5%a4%96%e7%b1%8d%e7%9c%8b%e8%ad%b7%e7%94%b3%e8%ab%8b%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97/" target="_blank" rel="noopener">失智症申請完整指南</a>。
+    不確定自己符不符合？<b>全程免費諮詢</b>，Lucky姐團隊 31 年經驗，一通電話幫你判斷。
   </p>
 </section>
 
@@ -849,7 +834,7 @@ html.js-reveal .reveal.in{
   if (!('IntersectionObserver' in window)) return;
 
   var targets = document.querySelectorAll(
-    '.top-photo, .facts, .cta2, .total, .rows, .aside, .routes > div,' +
+    '.top-photo, .facts, .cta2, .total, .rows, .aside, .qual li,' +
     '.vows > div, .offer a, .daily figure, .who-photo, .who, .papers, .end dl'
   );
   if (!targets.length) return;
