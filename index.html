@@ -239,45 +239,20 @@ h1 em{font-style:normal;color:var(--gold);display:block}
    換取「一眼掃完」的速度）。編號沿用 .vows 的圓形徽章語彙，
    讓頁面上兩處數字列表視覺語言一致。 ── */
 .qual{border-top:2px solid var(--navy-ink);margin-bottom:4px;padding:0;list-style:none}
-.qual li{border-bottom:1px solid var(--rule-cool)}
-.qual li:nth-child(even){background:rgba(255,255,255,.55)}
-.qual li.is-selected{background:rgba(6,199,85,.14)}
-.qual-btn{
-  all:unset;box-sizing:border-box;cursor:pointer;
-  display:flex;align-items:center;gap:13px;width:100%;
-  padding:10px 4px
+.qual li{
+  display:flex;align-items:center;gap:13px;
+  padding:10px 4px;border-bottom:1px solid var(--rule-cool)
 }
-.qual-btn:focus-visible{outline:3px solid var(--gold);outline-offset:-2px}
+.qual li:nth-child(even){background:rgba(255,255,255,.55)}
 .qual .no{
   flex:none;width:30px;height:30px;border-radius:50%;
   background:var(--navy);color:#fff;
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-weight:900;font-size:14.5px;line-height:1;
-  transition:background-color .15s
+  font-family:var(--serif);font-weight:900;font-size:14.5px;line-height:1
 }
-.qual li.is-selected .no{background:var(--line-green)}
-.qual .t{font-size:17px;font-weight:700;color:var(--navy-ink);line-height:1.35;flex:1}
+.qual .t{font-size:17px;font-weight:700;color:var(--navy-ink);line-height:1.35}
 .qual .t small{
   display:block;font-size:13.5px;font-weight:400;color:var(--ink-2);margin-top:2px
-}
-.qual .check{
-  flex:none;font-size:20px;font-weight:900;color:var(--line-green);
-  opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s
-}
-.qual li.is-selected .check{opacity:1;transform:scale(1)}
-@media (prefers-reduced-motion:reduce){
-  .qual .no,.qual .check{transition:none}
-}
-
-.qual-result{
-  margin-top:14px;padding:14px 16px;border-radius:12px;
-  background:rgba(6,199,85,.10);border:1px solid rgba(6,199,85,.35)
-}
-.qual-result p{font-size:16px;color:var(--ink);line-height:1.6}
-.qual-result b{color:var(--navy-ink)}
-.qual-cta{
-  display:inline-block;margin-left:2px;padding:4px 14px;border-radius:999px;
-  background:var(--line-green);color:#06301a;font-weight:700;text-decoration:none
 }
 
 /* ── 五大保證：深底，序號序列 ── */
@@ -566,21 +541,15 @@ html.js-reveal .reveal.in{
   <p class="dek">符合以下任一項即可申請，不是只有巴氏量表這條路。</p>
 
   <ul class="qual">
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">1</span><span class="t">80 歲以上<small>免評估，憑身分證即可</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">2</span><span class="t">失能診斷<small>巴氏量表 35–60 分以下，依年齡分級</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">3</span><span class="t">長照滿 6 個月<small>居家、日間或家庭托顧</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">4</span><span class="t">特定身心障礙<small>持相關證明即可</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">5</span><span class="t">75 歲以上重聘<small>曾聘僱過看護，全面免評</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">6</span><span class="t">70–79 歲癌症二期以上<small>憑診斷證明</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">7</span><span class="t">1 年內曾聘僱<small>不限年齡，附證明可直接重聘</small></span><span class="check" aria-hidden="true">✓</span></button></li>
-    <li><button type="button" class="qual-btn" aria-pressed="false"><span class="no">8</span><span class="t">輕度以上失智症<small>CDR 量表達 1 分以上</small></span><span class="check" aria-hidden="true">✓</span></button></li>
+    <li><span class="no">1</span><span class="t">80 歲以上<small>免評估，憑身分證即可</small></span></li>
+    <li><span class="no">2</span><span class="t">失能診斷<small>巴氏量表 35–60 分以下，依年齡分級</small></span></li>
+    <li><span class="no">3</span><span class="t">長照滿 6 個月<small>居家、日間或家庭托顧</small></span></li>
+    <li><span class="no">4</span><span class="t">特定身心障礙<small>持相關證明即可</small></span></li>
+    <li><span class="no">5</span><span class="t">75 歲以上重聘<small>曾聘僱過看護，全面免評</small></span></li>
+    <li><span class="no">6</span><span class="t">70–79 歲癌症二期以上<small>憑診斷證明</small></span></li>
+    <li><span class="no">7</span><span class="t">1 年內曾聘僱<small>不限年齡，附證明可直接重聘</small></span></li>
+    <li><span class="no">8</span><span class="t">輕度以上失智症<small>CDR 量表達 1 分以上</small></span></li>
   </ul>
-
-  <p class="dek" style="font-size:14px;margin:8px 0 0;color:var(--ink-2)">點選符合的項目，看看你家符不符合申請資格</p>
-
-  <div class="qual-result" id="qualResult" hidden>
-    <p><b><span id="qualCount">0</span> 項符合</b>——你符合申請資格！<a class="qual-cta" href="tel:0939131439">全程免費諮詢</a>，Lucky姐團隊幫你確認細節。</p>
-  </div>
 
   <p class="note">
     申請條件以主管機關勞動部最新公告為準，多元認定細節可洽
@@ -939,51 +908,6 @@ html.js-reveal .reveal.in{
   var dLine=document.querySelector('.dock .d-line');
   if(dTel)  track(dTel,'tel','dock');
   if(dLine) track(dLine,'line','dock');
-})();
-
-/* 資格自我檢測：點選任一項資格就顯示「你符合資格」＋CTA，選項目全部靠 CSS class 切換，不用動畫也完全看得到結果 */
-(function(){
-  'use strict';
-  var buttons=document.querySelectorAll('.qual-btn');
-  var result=document.getElementById('qualResult');
-  var countEl=document.getElementById('qualCount');
-  if(!buttons.length || !result) return;
-
-  var selected=Object.create(null);
-  var selectedCount=0;
-  var reported=false;
-
-  function update(){
-    result.hidden = selectedCount===0;
-    if(countEl) countEl.textContent=String(selectedCount);
-  }
-
-  [].forEach.call(buttons,function(btn,i){
-    btn.addEventListener('click',function(){
-      var li=btn.parentElement;
-      var isOn=btn.getAttribute('aria-pressed')==='true';
-      var next=!isOn;
-      btn.setAttribute('aria-pressed',String(next));
-      if(li) li.classList.toggle('is-selected',next);
-      if(next){
-        if(!selected[i]){ selected[i]=true; selectedCount++; }
-        if(!reported && typeof gtag==='function'){
-          reported=true;
-          gtag('event','qualify_select',{item:i+1});
-        }
-      }else if(selected[i]){
-        delete selected[i]; selectedCount--;
-      }
-      update();
-    });
-  });
-
-  var cta=result.querySelector('.qual-cta');
-  if(cta && typeof gtag==='function'){
-    cta.addEventListener('click',function(){
-      gtag('event','contact_click',{method:'tel',placement:'qual-result'});
-    });
-  }
 })();
 </script>
 
