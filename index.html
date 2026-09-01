@@ -826,11 +826,6 @@ html.js-reveal .qual li.reveal.in{transform:none}
   }, {rootMargin:'0px 0px -8% 0px', threshold:0.05});
 
   [].forEach.call(targets, function(el){ io.observe(el); });
-
-  // 保險：兩秒後一律歸位
-  setTimeout(function(){
-    [].forEach.call(targets, function(el){ el.classList.add('in'); });
-  }, 2000);
 })();
 
 (function(){
