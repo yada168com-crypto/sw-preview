@@ -31,7 +31,6 @@
   --gold:#7d6017;          /* 小字用：再壓深一階，四種底色皆達 AA */
   --gold-rule:#c8a84e;     /* 粗規線用 */
   --line-green:#06c755;
-  --line-green-deep:#087a37; /* LINE 諮詢按鈕背景專用：夠深，搭白字才能過對比度 */
 
   --paper:#fbfaf7;         /* 近白暖底 */
   --band:#eef1f4;          /* 冷灰藍色帶 */
@@ -144,7 +143,7 @@ h1 em{font-style:normal;color:var(--gold);display:block}
   transition:transform .18s ease, box-shadow .18s ease, filter .18s ease
 }
 .act--tel{background:var(--navy);color:#fff}
-.act--line{background:var(--line-green-deep);color:#fff}
+.act--line{background:var(--line-green);color:#fff}
 .act:hover{transform:translateY(-2px);box-shadow:var(--sh-lift);filter:saturate(1.06)}
 .act:active{transform:translateY(0);box-shadow:var(--sh-soft)}
 
@@ -412,7 +411,7 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 }
 .dock a:active{filter:brightness(.92)}
 .dock .d-tel{background:var(--navy);color:#fff}
-.dock .d-line{background:var(--line-green-deep);color:#fff}
+.dock .d-line{background:var(--line-green);color:#fff}
 
 /* ── 獎狀放大 ── */
 .lb{
