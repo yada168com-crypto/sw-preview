@@ -4,7 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<!-- GA4：這裡的 G-XXXXXXXXXX 是佔位符，換成真的 Measurement ID 才會真的送資料到 GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
 <title>世華人才仲介｜台中外勞仲介 深耕31年・評鑑A級・最快0-7天上工</title>
+<meta name="description" content="台中世華人才仲介，深耕31年、20餘年持續A級評鑑。外籍看護申請資格、費用怎麼算、多久能上工，一次講清楚。全程免費諮詢。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yada168com-crypto.github.io/sw-preview/">
+<meta property="og:title" content="世華人才仲介｜外籍看護申請與費用一次看懂">
+<meta property="og:description" content="台中世華人才仲介，深耕31年、20餘年持續A級評鑑。外籍看護申請資格、費用怎麼算、多久能上工，一次講清楚。全程免費諮詢。">
+<meta property="og:image" content="https://yada168com-crypto.github.io/sw-preview/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
 :root{
@@ -881,6 +897,32 @@ html.js-reveal .reveal.in{
     if(Math.abs(dx)>45) show(cur+(dx<0?1:-1));
     x0=null;
   },{passive:true});
+})();
+
+/* GA4：兩顆 CTA（撥打電話／LINE 諮詢）點擊追蹤，涵蓋首屏、頁面中段、底部固定列三個位置 */
+(function(){
+  'use strict';
+  if(typeof gtag!=='function') return;
+
+  function track(el,method,placement){
+    el.addEventListener('click',function(){
+      gtag('event','contact_click',{method:method,placement:placement});
+    });
+  }
+
+  var cta2Blocks=document.querySelectorAll('.cta2');
+  [].forEach.call(cta2Blocks,function(block,i){
+    var placement=i===0?'hero':'cta2';
+    var tel=block.querySelector('.act--tel');
+    var line=block.querySelector('.act--line');
+    if(tel)  track(tel,'tel',placement);
+    if(line) track(line,'line',placement);
+  });
+
+  var dTel=document.querySelector('.dock .d-tel');
+  var dLine=document.querySelector('.dock .d-line');
+  if(dTel)  track(dTel,'tel','dock');
+  if(dLine) track(dLine,'line','dock');
 })();
 </script>
 
