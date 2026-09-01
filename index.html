@@ -441,10 +441,10 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 /* 捲動進場：刻意「只動位移、不動透明度」。
    若瀏覽器因任何原因沒跑轉場，內容仍 100% 可見（只是低 20px，看不出來），
    不會出現內容隱形這種致命失敗。class 由 JS 自己加，無 JS 時完全不啟用。 */
-html.js-reveal .reveal{transform:translateY(20px)}
+html.js-reveal .reveal{transform:translateY(36px) scale(.97)}
 html.js-reveal .reveal.in{
   transform:none;
-  transition:transform .8s cubic-bezier(.22,1,.36,1)
+  transition:transform .7s cubic-bezier(.22,1,.36,1)
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -812,7 +812,7 @@ html.js-reveal .reveal.in{
     var key = (el.parentElement && el.parentElement.className) || 'x';
     groups[key] = groups[key] || 0;
     var i = groups[key]++;
-    if (i) el.style.transitionDelay = Math.min(i * 60, 240) + 'ms';
+    if (i) el.style.transitionDelay = Math.min(i * 70, 350) + 'ms';
   });
 
   var io = new IntersectionObserver(function(entries){
