@@ -238,7 +238,7 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 /* ── 資格：拆平成單一數字清單（使用者要求，捨棄三途徑分類，
    換取「一眼掃完」的速度）。編號沿用 .vows 的圓形徽章語彙，
    讓頁面上兩處數字列表視覺語言一致。 ── */
-.qual{border-top:2px solid var(--navy-ink);margin-bottom:4px;padding:0;list-style:none}
+.qual{border-top:2px solid var(--navy-ink);margin-bottom:4px;padding:0;list-style:none;overflow:hidden}
 .qual li{
   display:flex;align-items:center;gap:13px;
   padding:10px 4px;border-bottom:1px solid var(--rule-cool)
@@ -446,6 +446,10 @@ html.js-reveal .reveal.in{
   transform:none;
   transition:transform .7s cubic-bezier(.22,1,.36,1)
 }
+
+/* 資格清單：跟其他區塊的垂直進場做出區隔，改成一項項從右側橫向滑入 */
+html.js-reveal .qual li.reveal{transform:translateX(56px)}
+html.js-reveal .qual li.reveal.in{transform:none}
 
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
