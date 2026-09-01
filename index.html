@@ -27,6 +27,7 @@
   /* 品牌色沿用，但改變角色與比重：深藍只作字與規線，不再做大色塊 */
   --navy:#1a3a5c;
   --navy-ink:#13293f;
+  --link:#1b5fae;         /* 內文連結專用：跟內文灰、標題深藍都拉開，手機上一眼看出能點 */
   --gold:#7d6017;          /* 小字用：再壓深一階，四種底色皆達 AA */
   --gold-rule:#c8a84e;     /* 粗規線用 */
   --line-green:#06c755;
@@ -231,7 +232,7 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 .aside ul{margin:0;padding-left:22px;font-size:19px;color:var(--ink-2)}
 .aside li{margin-bottom:5px}
 .note{font-size:18px;color:var(--ink-2);margin-top:20px;line-height:1.6}
-.note a{color:var(--navy);text-decoration:underline}
+.note a{color:var(--link);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .note b{color:var(--ink)}
 
 /* ── 資格：拆平成單一數字清單（使用者要求，捨棄三途徑分類，
@@ -504,7 +505,7 @@ html.js-reveal .reveal.in{
   <div class="cost-hero">
     <span class="sec-no">費用</span>
     <h2>一個月要多少錢</h2>
-    <p class="dek">看護到職後，雇主每個月要付的固定支出——不含第一次聘僱的仲介費用。2026 年最新數字。</p>
+    <p class="dek">以聘僱印尼看護計算，雇主到職後每個月要付的固定支出（不含第一次聘僱的仲介費用）。2026 年最新數字。</p>
 
     <div class="total">
       <span class="cap">雇主每月最低支出</span>
