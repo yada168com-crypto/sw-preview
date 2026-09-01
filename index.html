@@ -508,38 +508,19 @@ html.js-reveal .reveal.in{
     <p class="dek">以聘僱印尼看護計算，雇主到職後每個月要付的固定支出（不含第一次聘僱的仲介費用）。2026 年最新數字。</p>
 
     <div class="total">
-      <span class="cap">雇主每月最低支出</span>
-      <span class="num">23,484<small> 元</small></span>
-      <span class="band-note">含加班費約 26,819 元（週日不休假）</span>
+      <span class="cap">雇主每月預估總費用</span>
+      <span class="num">26,000<small> ～35,000 元</small></span>
+      <span class="band-note">含加班費、健保等雇主負擔項目</span>
       <span class="caveat">依雇主不同需求，費用會有些微調整</span>
     </div>
+  </div>
 
-    <div class="rows">
-    <div>
-      <span class="k">最低基本月薪<i>依勞動部公告</i></span>
-      <span class="v">20,000</span>
-    </div>
-    <div>
-      <span class="k">加班費<i>週日不休假才計，日薪 667 元</i></span>
-      <span class="v">0～3,335</span>
-    </div>
-    <div>
-      <span class="k">就業安定費<i>家庭看護類，每季繳6,000</i></span>
-      <span class="v">2,000</span>
-    </div>
-    <div>
-      <span class="k">健保費<i>雇主負擔部分</i></span>
-      <span class="v">1,428</span>
-    </div>
-    <div>
-      <span class="k">職業災害保險<i>雇主負擔</i></span>
-      <span class="v">56</span>
-    </div>
-      <div class="sum">
-        <span class="k">每月合計</span>
-        <span class="v">23,484～26,819</span>
-      </div>
-    </div>
+  <div class="aside">
+    <ul>
+      <li>計薪方式　以「月薪制度」為主，穩定且長期。</li>
+      <li>休假規定　外籍看護每週應享有 1 天例假，且必須為連續 24 小時休息，確保照護品質不打折。</li>
+      <li>加班費計算　若經雙方協議不休假，雇主需依法支付加班費（約 667 元/天）。</li>
+    </ul>
   </div>
 
   <p class="note">
@@ -547,7 +528,7 @@ html.js-reveal .reveal.in{
   </p>
 
   <p class="note">
-    數字依據勞動部公告與世華整理之
+    想了解詳細試算，可參考世華整理之
     <a href="https://ss1689.com/%E5%A4%96%E7%B1%8D%E7%9C%8B%E8%AD%B7%E8%96%AA%E8%B3%87%E8%A8%88%E7%AE%97%E6%96%B9%E5%BC%8F/">外籍看護薪資計算方式</a>。
     費用會因國籍、班別與政策調整而異，實際金額以簽約內容為準 ——
     <b>全程免費諮詢</b>，有任何疑問都會逐項說明清楚。
@@ -818,7 +799,7 @@ html.js-reveal .reveal.in{
   if (!('IntersectionObserver' in window)) return;
 
   var targets = document.querySelectorAll(
-    '.top-photo, .facts, .cta2, .total, .rows, .aside, .qual li,' +
+    '.top-photo, .facts, .cta2, .total, .aside, .qual li,' +
     '.vows > div, .offer a, .daily figure, .who-photo, .who, .papers, .end dl'
   );
   if (!targets.length) return;
