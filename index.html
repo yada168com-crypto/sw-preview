@@ -172,7 +172,8 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 
 /* ── 手機版目錄：連到站上其他真實頁面（跟上面 .jump 的頁內快速跳轉是兩件事）。
    固定在右上角的漢堡鈕，點開後從畫面上緣滑下一片選單；服務項目需要
-   「先展開子項、再點子項才導頁」，首頁是同頁捲動回頂部，其餘項目點下去直接導頁。 ── */
+   「先展開子項、再點子項才導頁」；首頁／行動版首頁兩項都是同頁捲動回頂部
+   （不導頁、不出現 ss1689.com 原始首頁），其餘項目點下去直接導頁（開新分頁）。 ── */
 .mnav-btn{
   position:fixed;top:16px;right:16px;z-index:10000;
   width:46px;height:46px;border:0;border-radius:12px;
@@ -540,7 +541,7 @@ html.js-reveal .qual li.reveal.in{transform:none}
   </div>
   <ul class="mnav-list">
     <li><button type="button" class="mnav-top" id="mnavTop">首頁</button></li>
-    <li><a href="https://ss1689.com/">關於世華</a></li>
+    <li><button type="button" class="mnav-top" id="mnavAbout">行動版首頁</button></li>
     <li><a href="https://ss1689.com/%e5%8b%9e%e9%9b%87%e9%9c%80%e7%9f%a5/" target="_blank" rel="noopener">勞雇須知</a></li>
     <li class="mnav-item">
       <button type="button" class="mnav-parent" aria-expanded="false" aria-controls="mnavSub2">
@@ -1006,7 +1007,8 @@ html.js-reveal .qual li.reveal.in{transform:none}
 })();
 
 /* 手機版目錄：漢堡鈕開關整片選單；服務項目點一下展開子項，子項連結才是真的
-   導頁；首頁是同頁捲動回頂部，其餘項目都直接連到真實頁面；
+   導頁；首頁／行動版首頁都是同頁捲動回頂部（刻意不用 <a href="https://ss1689.com/">，
+   避免真的觸發導頁、手機上短暫看到原始桌機版首頁）；其餘項目連真實頁面（開新分頁）；
    Esc 或點背景關閉；開啟時鎖住背景捲動。 */
 (function(){
   'use strict';
@@ -1036,14 +1038,15 @@ html.js-reveal .qual li.reveal.in{transform:none}
   if(closeBtn) closeBtn.addEventListener('click',closeMenu);
   backdrop.addEventListener('click',closeMenu);
 
-  var topBtn=document.getElementById('mnavTop');
-  if(topBtn){
-    topBtn.addEventListener('click',function(){
-      closeMenu();
-      try{ window.scrollTo({top:0,behavior:'instant'}); }
-      catch(err){ window.scrollTo(0,0); }
-    });
+  function goTop(){
+    closeMenu();
+    try{ window.scrollTo({top:0,behavior:'instant'}); }
+    catch(err){ window.scrollTo(0,0); }
   }
+  var topBtn=document.getElementById('mnavTop');
+  if(topBtn) topBtn.addEventListener('click',goTop);
+  var aboutBtn=document.getElementById('mnavAbout');
+  if(aboutBtn) aboutBtn.addEventListener('click',goTop);
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){ if(btn.getAttribute('aria-expanded')==='true') closeMenu(); }
   });
