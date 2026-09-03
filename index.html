@@ -171,8 +171,8 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 .jump a .go{margin-left:auto;color:var(--ink-3);font-size:24px}
 
 /* ── 手機版目錄：連到站上其他真實頁面（跟上面 .jump 的頁內快速跳轉是兩件事）。
-   固定在右上角的漢堡鈕，點開後從畫面上緣滑下一片選單；勞雇須知／服務項目
-   兩項需要「先展開子項、再點子項才導頁」，其餘項目點下去直接導頁。 ── */
+   固定在右上角的漢堡鈕，點開後從畫面上緣滑下一片選單；服務項目需要
+   「先展開子項、再點子項才導頁」，首頁是同頁捲動回頂部，其餘項目點下去直接導頁。 ── */
 .mnav-btn{
   position:fixed;top:16px;right:16px;z-index:10000;
   width:46px;height:46px;border:0;border-radius:12px;
@@ -212,6 +212,10 @@ h1 em{font-style:normal;color:var(--gold);display:block}
   display:block;padding:16px 4px;font-size:19px;font-weight:700;
   color:var(--navy-ink);text-decoration:none
 }
+.mnav-top{
+  all:unset;box-sizing:border-box;display:block;width:100%;
+  padding:16px 4px;font-size:19px;font-weight:700;color:var(--navy-ink);cursor:pointer
+}
 .mnav-parent{
   all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;
   width:100%;padding:16px 4px;font-size:19px;font-weight:700;color:var(--navy-ink);cursor:pointer
@@ -226,7 +230,7 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 .mnav-sub a{
   display:block;padding:13px 4px;font-size:17px;color:var(--ink-2);text-decoration:none
 }
-.mnav-sub a:active,.mnav-list > li > a:active{color:var(--link)}
+.mnav-sub a:active,.mnav-list > li > a:active,.mnav-top:active{color:var(--link)}
 @media (prefers-reduced-motion:reduce){
   .mnav-btn span,.mnav,.mnav-backdrop,.mnav-caret{transition:none}
 }
@@ -535,15 +539,9 @@ html.js-reveal .qual li.reveal.in{transform:none}
     <button type="button" class="mnav-close" id="mnavClose" aria-label="關閉選單">✕</button>
   </div>
   <ul class="mnav-list">
+    <li><button type="button" class="mnav-top" id="mnavTop">首頁</button></li>
     <li><a href="https://ss1689.com/">關於世華</a></li>
-    <li class="mnav-item">
-      <button type="button" class="mnav-parent" aria-expanded="false" aria-controls="mnavSub1">
-        <span>勞雇須知</span><span class="mnav-caret" aria-hidden="true"></span>
-      </button>
-      <ul class="mnav-sub" id="mnavSub1" hidden>
-        <li><a href="https://ss1689.com/%e5%8b%9e%e9%9b%87%e9%9c%80%e7%9f%a5/">勞雇須知總覽</a></li>
-      </ul>
-    </li>
+    <li><a href="https://ss1689.com/%e5%8b%9e%e9%9b%87%e9%9c%80%e7%9f%a5/">勞雇須知</a></li>
     <li class="mnav-item">
       <button type="button" class="mnav-parent" aria-expanded="false" aria-controls="mnavSub2">
         <span>服務項目</span><span class="mnav-caret" aria-hidden="true"></span>
@@ -560,7 +558,7 @@ html.js-reveal .qual li.reveal.in{transform:none}
 </nav>
 
 <!-- ═══ 首屏 ═══ -->
-<header class="top">
+<header class="top" id="top">
   <span class="eyebrow">台中・彰化・南投　外籍看護申請</span>
   <div class="head-row">
     <h1>照顧一個人<br>不該用掉<em>你的一輩子</em></h1>
@@ -1007,8 +1005,9 @@ html.js-reveal .qual li.reveal.in{transform:none}
   if(dLine) track(dLine,'line','dock');
 })();
 
-/* 手機版目錄：漢堡鈕開關整片選單；勞雇須知／服務項目點一下展開子項，
-   子項連結才是真的導頁；Esc 或點背景關閉；開啟時鎖住背景捲動。 */
+/* 手機版目錄：漢堡鈕開關整片選單；服務項目點一下展開子項，子項連結才是真的
+   導頁；首頁是同頁捲動回頂部，其餘項目都直接連到真實頁面；
+   Esc 或點背景關閉；開啟時鎖住背景捲動。 */
 (function(){
   'use strict';
   var btn=document.getElementById('mnavBtn');
@@ -1036,6 +1035,15 @@ html.js-reveal .qual li.reveal.in{transform:none}
   });
   if(closeBtn) closeBtn.addEventListener('click',closeMenu);
   backdrop.addEventListener('click',closeMenu);
+
+  var topBtn=document.getElementById('mnavTop');
+  if(topBtn){
+    topBtn.addEventListener('click',function(){
+      closeMenu();
+      try{ window.scrollTo({top:0,behavior:'instant'}); }
+      catch(err){ window.scrollTo(0,0); }
+    });
+  }
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){ if(btn.getAttribute('aria-expanded')==='true') closeMenu(); }
   });
