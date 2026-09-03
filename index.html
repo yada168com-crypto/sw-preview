@@ -170,6 +170,67 @@ h1 em{font-style:normal;color:var(--gold);display:block}
 }
 .jump a .go{margin-left:auto;color:var(--ink-3);font-size:24px}
 
+/* ── 手機版目錄：連到站上其他真實頁面（跟上面 .jump 的頁內快速跳轉是兩件事）。
+   固定在右上角的漢堡鈕，點開後從畫面上緣滑下一片選單；勞雇須知／服務項目
+   兩項需要「先展開子項、再點子項才導頁」，其餘項目點下去直接導頁。 ── */
+.mnav-btn{
+  position:fixed;top:16px;right:16px;z-index:10000;
+  width:46px;height:46px;border:0;border-radius:12px;
+  background:var(--navy);box-shadow:var(--sh-soft);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px
+}
+.mnav-btn span{width:22px;height:2.5px;background:#fff;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.mnav-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.mnav-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.mnav-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+.mnav-backdrop{
+  position:fixed;inset:0;z-index:10001;background:rgba(19,30,41,.45);
+  opacity:0;transition:opacity .2s ease
+}
+.mnav-backdrop.is-on{opacity:1}
+
+.mnav{
+  position:fixed;left:0;right:0;top:0;z-index:10002;
+  background:var(--paper);border-bottom:4px solid var(--gold-rule);
+  box-shadow:var(--sh-lift);max-height:100%;overflow-y:auto;
+  transform:translateY(-100%);transition:transform .28s cubic-bezier(.22,1,.36,1)
+}
+.mnav.is-on{transform:translateY(0)}
+.mnav-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 18px 12px;font-family:var(--serif);font-weight:900;
+  font-size:20px;color:var(--navy-ink)
+}
+.mnav-close{
+  width:36px;height:36px;border:0;border-radius:50%;background:var(--band);
+  color:var(--ink-2);font-size:18px;cursor:pointer
+}
+.mnav-list{list-style:none;margin:0;padding:0 18px 22px;border-top:1px solid var(--rule-cool)}
+.mnav-list > li{border-bottom:1px solid var(--rule-cool)}
+.mnav-list > li > a{
+  display:block;padding:16px 4px;font-size:19px;font-weight:700;
+  color:var(--navy-ink);text-decoration:none
+}
+.mnav-parent{
+  all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:16px 4px;font-size:19px;font-weight:700;color:var(--navy-ink);cursor:pointer
+}
+.mnav-caret{
+  flex:none;width:10px;height:10px;border-right:2.5px solid var(--ink-3);border-bottom:2.5px solid var(--ink-3);
+  transform:rotate(45deg);transition:transform .2s ease;margin-top:-4px
+}
+.mnav-parent[aria-expanded="true"] .mnav-caret{transform:rotate(-135deg);margin-top:4px}
+.mnav-sub{list-style:none;margin:0 0 6px;padding:0 0 0 16px}
+.mnav-sub li{border-top:1px dashed var(--rule-cool)}
+.mnav-sub a{
+  display:block;padding:13px 4px;font-size:17px;color:var(--ink-2);text-decoration:none
+}
+.mnav-sub a:active,.mnav-list > li > a:active{color:var(--link)}
+@media (prefers-reduced-motion:reduce){
+  .mnav-btn span,.mnav,.mnav-backdrop,.mnav-caret{transition:none}
+}
+
 /* ── 費用：大數字 + 規線條列，不用方框表格 ──
    #cost 這區使用者要求「手機一個畫面看到全部」，故標頭／總額／
    明細列都用 #cost 專屬選擇器收緊，不影響其他區塊共用的 h2/.dek/.note。
@@ -460,6 +521,43 @@ html.js-reveal .qual li.reveal.in{transform:none}
 <body>
 
 <div class="progress" id="prog" aria-hidden="true"></div>
+
+<!-- ═══ 手機版目錄（連到站上其他真實頁面，跟頁內快速跳轉是兩件事） ═══ -->
+<button type="button" class="mnav-btn" id="mnavBtn" aria-expanded="false" aria-controls="mnavPanel" aria-label="開啟選單">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="mnav-backdrop" id="mnavBackdrop" hidden></div>
+
+<nav class="mnav" id="mnavPanel" aria-hidden="true" aria-label="網站選單">
+  <div class="mnav-head">
+    <span>世華人才仲介</span>
+    <button type="button" class="mnav-close" id="mnavClose" aria-label="關閉選單">✕</button>
+  </div>
+  <ul class="mnav-list">
+    <li><a href="https://ss1689.com/">關於世華</a></li>
+    <li class="mnav-item">
+      <button type="button" class="mnav-parent" aria-expanded="false" aria-controls="mnavSub1">
+        <span>勞雇須知</span><span class="mnav-caret" aria-hidden="true"></span>
+      </button>
+      <ul class="mnav-sub" id="mnavSub1" hidden>
+        <li><a href="https://ss1689.com/%e5%8b%9e%e9%9b%87%e9%9c%80%e7%9f%a5/">勞雇須知總覽</a></li>
+      </ul>
+    </li>
+    <li class="mnav-item">
+      <button type="button" class="mnav-parent" aria-expanded="false" aria-controls="mnavSub2">
+        <span>服務項目</span><span class="mnav-caret" aria-hidden="true"></span>
+      </button>
+      <ul class="mnav-sub" id="mnavSub2" hidden>
+        <li><a href="https://ss1689.com/%e5%a4%96%e7%b1%8d%e5%ae%b6%e5%ba%ad%e7%9c%8b%e8%ad%b7/">外籍看護工</a></li>
+        <li><a href="https://ss1689.com/%e5%a4%96%e7%b1%8d%e5%b9%ab%e5%82%ad/">外籍家庭幫傭</a></li>
+        <li><a href="https://ss1689.com/%e4%bc%81%e6%a5%ad%e7%a7%bb%e5%b7%a5/">企業移工</a></li>
+        <li><a href="https://ss1689.com/%e6%97%85%e5%ae%bf%e6%a5%ad%e7%a7%bb%e5%b7%a5/">旅宿業移工</a></li>
+      </ul>
+    </li>
+    <li><a href="https://ss1689.com/%e5%b8%b8%e8%a6%8b%e5%95%8f%e9%a1%8c/">常見問題</a></li>
+  </ul>
+</nav>
 
 <!-- ═══ 首屏 ═══ -->
 <header class="top">
@@ -813,7 +911,7 @@ html.js-reveal .qual li.reveal.in{transform:none}
   // 同一群組內交錯 60ms，讓進場有節奏而不是整塊一起跳
   var groups = {};
   [].forEach.call(targets, function(el){
-    var key = (el.parentElement && el.parentElement.className) || 'x';
+    var key = (el.parentElement ? el.parentElement.className : '') || 'x';
     groups[key] = groups[key] || 0;
     var i = groups[key]++;
     if (i) el.style.transitionDelay = Math.min(i * 70, 350) + 'ms';
@@ -856,7 +954,7 @@ html.js-reveal .qual li.reveal.in{transform:none}
   function close(){
     lb.classList.remove('is-on'); lb.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
-    if(back && back.focus) back.focus();
+    if(back){ if(back.focus) back.focus(); }
   }
 
   grid.addEventListener('click',function(e){
@@ -907,6 +1005,49 @@ html.js-reveal .qual li.reveal.in{transform:none}
   var dLine=document.querySelector('.dock .d-line');
   if(dTel)  track(dTel,'tel','dock');
   if(dLine) track(dLine,'line','dock');
+})();
+
+/* 手機版目錄：漢堡鈕開關整片選單；勞雇須知／服務項目點一下展開子項，
+   子項連結才是真的導頁；Esc 或點背景關閉；開啟時鎖住背景捲動。 */
+(function(){
+  'use strict';
+  var btn=document.getElementById('mnavBtn');
+  var panel=document.getElementById('mnavPanel');
+  var backdrop=document.getElementById('mnavBackdrop');
+  var closeBtn=document.getElementById('mnavClose');
+  if(!btn || !panel || !backdrop) return;
+
+  function openMenu(){
+    btn.setAttribute('aria-expanded','true');
+    panel.classList.add('is-on'); panel.setAttribute('aria-hidden','false');
+    backdrop.hidden=false;
+    requestAnimationFrame(function(){ backdrop.classList.add('is-on'); });
+    document.body.style.overflow='hidden';
+  }
+  function closeMenu(){
+    btn.setAttribute('aria-expanded','false');
+    panel.classList.remove('is-on'); panel.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('is-on');
+    document.body.style.overflow='';
+    setTimeout(function(){ if(!backdrop.classList.contains('is-on')) backdrop.hidden=true; },260);
+  }
+  btn.addEventListener('click',function(){
+    (btn.getAttribute('aria-expanded')==='true') ? closeMenu() : openMenu();
+  });
+  if(closeBtn) closeBtn.addEventListener('click',closeMenu);
+  backdrop.addEventListener('click',closeMenu);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){ if(btn.getAttribute('aria-expanded')==='true') closeMenu(); }
+  });
+
+  [].forEach.call(document.querySelectorAll('.mnav-parent'),function(p){
+    p.addEventListener('click',function(){
+      var sub=document.getElementById(p.getAttribute('aria-controls'));
+      var open=p.getAttribute('aria-expanded')==='true';
+      p.setAttribute('aria-expanded',String(!open));
+      if(sub) sub.hidden=open;
+    });
+  });
 })();
 </script>
 
